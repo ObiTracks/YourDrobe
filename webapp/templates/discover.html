@@ -9,12 +9,11 @@
 
 {% block content %}
 <div class="discover">
-    <h1>Discover</h1>
+    <h1>Discover</h1><hr>
 
         {% for tag in tags %}
         
         {% if tag.wardrobepost_set.all.count != 0 %}
-        <hr>
         <h2>{{tag.title}}</h2>
 
         <div class="category">
