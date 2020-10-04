@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+<nav class="navbar">
+    <h1><a href="{% url 'home' %}">Yourdrobe</a></h1>
+
+    <ul>
+        <li><a href="{% url 'home' %}">Feed</a></li>
+        <li><a href="{% url 'discover' %}">Discover</a></li>
+        <li><a href="{% url 'profile' request.user.customer.id %}">Your Profile</a></li>
+        <li><a href="{% url 'create' %}">+ Post</a></li>
+    </ul>
+
+    <div class="logout">
+        <a href="{% url 'logout' %}">logout {{current_user}}</a>
+    </div>
+
+</nav>

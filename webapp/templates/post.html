@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main/home.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/staff.css' %}">
+<title>Dashboard</title>
+{% endblock %}
+
+{% block content %}
+<div class="post">
+    <header>
+        <img class="profilepic" src="{{posts.first.customer.profile_pic.url}}" alt="">
+
+        <div class="metainfo">
+            <h2>{{post.customer.username}}</h2>
+            <h3 class="caption">{{post.caption}}</h3>
+        </div>
+        <div class="profile">
+            <a href="">
+                Profile
+            </a>
+        </div>
+
+    </header>
+
+    <div class="post_content">
+        <div class="card">
+            <div class="image">
+                <img class="picture" src="{{posts.first.image.url}}" alt="">
+            </div>
+            <div class="tags">
+                <div class="tag">Tag Tag</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

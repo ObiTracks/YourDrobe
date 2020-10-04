@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main/home.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/staff.css' %}">
+<title>Dashboard</title>
+{% endblock %}
+
+{% block content %}
+<div class="discover">
+    <h1>Discover</h1>
+
+        {% for tag in tags %}
+        
+        {% if tag.wardrobepost_set.all.count != 0 %}
+        <hr>
+        <h2>{{tag.title}}</h2>
+
+        <div class="category">
+            {% for post in tag.wardrobepost_set.all %}
+            <div class="card">
+                <div class="image">
+                    {% if post.image %}
+                    <img class="picture" src="{{post.image.url}}" alt="">
+                    {% endif %}
+                </div>
+                <div class="tags">
+                    {% for tag in post.tags.all %}
+                    <div class="tag">{{tag.title}}</div>
+                    {% endfor %}
+                </div>
+                    <button><a href="{% url 'profile' post.customer.id %}">Profile</a></button>
+            </div>
+            {% endfor %}
+
+            
+        </div>
+        <hr>
+
+        {% endif %}
+        {% endfor %}
+</div>
+{% endblock %}

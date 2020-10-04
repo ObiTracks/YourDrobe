@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+<title>Dashboard</title>
+{% endblock %}
+
+{% block content %}
+    <!-- <h1 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 3rem; text-align: left; width: 40%">Your Style Feed</h1> -->
+    {% for post in posts %}
+    <div class="post">
+        <header>
+            {% if post.customer.profile_pic %}
+            <img class="profilepic" src="{{post.customer.profile_pic.url}}" alt="">
+            {% endif %}
+            <div class="metainfo">
+                <h2>{{post.customer.username}}</h2>
+                <h3 class="caption">{{post.caption}}</h3>
+            </div>
+            <button><a href="{% url 'profile' post.customer.id %}">Profile</a></button>
+
+        </header>
+
+        <div class="post_content">
+            <div class="card">
+                <div class="image">
+                    {% if post.image %}
+                    <img class="picture" src="{{post.image.url}}" alt="">
+                    {% endif %}
+                    
+                </div>
+            </div>
+            
+            <div class="tags">
+                {% for tag in post.tags.all %}
+                <div class="tag">{{tag.title}}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% if post.customer == request.user.customer %}
+        </button>
+        {% endif %}
+        <hr style="width: 100%; border-radius: 3px; background: rgb(218, 218, 218);">
+    </div>
+    <br>
+    {% endfor %}
+
+{% endblock %}

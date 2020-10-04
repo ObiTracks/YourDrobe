@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main/home.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/staff.css' %}">
+<title>Dashboard</title>
+{% endblock %}
+
+{% block content %}
+<div class="card resident-card">
+    <div class="body">
+        <div class="info-container">
+
+            <img class="profilepic" src="{{customer.profile_pic.url}}" style="width: 20rem; height: 20rem; border-radius: 50%;" alt="">
+            <table>
+                <tr>
+                    <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Username</h1>
+                    <td>
+                        <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{customer.username}}</h2>
+                    </td>
+                </tr>
+            <table>
+                <tr>
+                    <td>
+                        <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Since {{customer.date_created}}</h3>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        
+    </div>
+</div>
+
+<div class="discover">
+    <h1>Posts by {{customer.username}}</h1>
+
+    <div class="category">
+        {% for post in posts %}
+        <div class="card">
+            <div class="image">
+                {% if post.image %}
+                <img class="picture" src="{{post.image.url}}" alt="">
+                {% endif %}
+            </div>
+            <div class="tags">
+                {% for tag in post.tags.all %}
+                <div class="tag">{{tag.title}}</div>
+                {% endfor %}
+            </div>
+            {% if request.user.customer == customer %}
+            <button><a href="{% url 'delete' post.id %}">Delete</a></button>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+</div>
+{% endblock %}
