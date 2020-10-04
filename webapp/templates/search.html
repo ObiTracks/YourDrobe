@@ -19,17 +19,16 @@
     <table style="border: solid black 2px; width: 100%; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
         <tr style="width: 100%; background: teal;">
             <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Date Created</th>
         </tr>
 
-        <tr style="width: 100%; text-align: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        
         {% for customer in customers %}
+        <tr style="width: 100%; text-align: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"></tr>
             <td>{{customer.username}}</td>
-            <td>{{customer.first_name}}</td>
-            <td>{{customer.last_name}}</td>
-        {% endfor %}
+            <td>{{customer.date_created}}</td>
         </tr>
+        {% endfor %}
     </table>
     <hr>
     
